@@ -1,5 +1,33 @@
 ## Prueba Iker Lorente Impacta
 
+**Versiones utilizadas**
+
+![version de php, composer y extensiones usadas](https://res.cloudinary.com/df0pqqjoh/image/upload/v1723492475/proyectos-online/gkdx7ipwvkgslj6hs5vr.png)
+
+**Los comandos para instalar el proyecto son**
+
+`composer install`
+
+`npm install`
+
+`Copiar .env.example y pegarlo como .env.` 
+
+`Configurar la base de datos en el .env`
+
+`Configurar idioma en el .env (APP_LOCALE=es)`
+
+`Configurar url de la app en el .env (APP_URL=http://localhost:puerto)`
+
+`php artisan key:generate`
+
+`php artisan storage:link`
+
+`php artisan migrate`
+
+`php artisan serve --port=puerto` en paralelo
+
+`npm run dev` el paralelo
+
 **Este proyecto ha sido desarrollado utilizando las siguientes tecnologías:**
 
 - **Laravel**: para la organización de rutas, vistas y lógica del backend.
