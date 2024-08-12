@@ -1,0 +1,12 @@
+CREATE TABLE contactos (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    telefono VARCHAR(255) NOT NULL,
+    planeta_nacimiento VARCHAR(255) NOT NULL,
+    mensaje TEXT NOT NULL,
+    opcion_formulario VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
