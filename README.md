@@ -6,27 +6,33 @@
 
 **Los comandos para instalar el proyecto son**
 
-`composer install`
+`Clonar/ descargar repositorio`
 
-`npm install`
+Una vez dentro del repositorio en local:
 
-`Copiar .env.example y pegarlo como .env.` 
+- `composer install`
 
-`Configurar la base de datos en el .env`
+- `npm install`
 
-`Configurar idioma en el .env (APP_LOCALE=es)`
+- `Copiar .env.example y pegarlo como .env.` 
 
-`Configurar url de la app en el .env (APP_URL=http://localhost:puerto)`
+- `Configurar la base de datos en el .env` (creada previamente en un gestor de bd mysql)
 
-`php artisan key:generate`
+- `Configurar idioma en el .env (APP_LOCALE=es)`
 
-`php artisan storage:link`
+- `Configurar url de la app en el .env (APP_URL=http://localhost:puerto)`
 
-`php artisan migrate`
+- `php artisan key:generate`
 
-`php artisan serve --port=puerto` en paralelo
+- `php artisan storage:link`
 
-`npm run dev` en paralelo
+- `php artisan migrate`
+
+- `php artisan serve --port=puerto` en paralelo
+
+- `npm run dev` en paralelo
+
+El proyecto ya debería estar en funcionamiento en `http://localhost:puerto`. Finalmente, para crear un usuario y acceder al panel de administración, lo haremos desde `http://localhost:puerto/admin/register`.
 
 **Este proyecto ha sido desarrollado utilizando las siguientes tecnologías:**
 
