@@ -282,12 +282,11 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         var swiper = new Swiper('.swiper-container', {
-            loop: true, // Habilita el loop
+            loop: true
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
             },
-            // Añade más opciones según sea necesario
         });
     });
 

@@ -16,7 +16,7 @@ En primer lugar, lo primero que hice al recibir los recursos para la web es opti
 
 La maquetación HTML del sitio web se encuentra en la ruta **resources\views\home.blade.php**, aunque el `<head>` se encuentra en el archivo **resources\views\layouts\app.blade.php**
 
-Tanto **resources\views\home.blade.php** como **resources\views\layouts\app.blade.php** están "unidos" gracias a las directivas de blade @extends y @yield respectivamente.
+Tanto **resources\views\home.blade.php** como **resources\views\layouts\app.blade.php** están 'unidos' gracias a las directivas de blade @extends y @yield respectivamente.
 
 #### Explicación HTML
 
@@ -43,7 +43,7 @@ En este caso el `<body>` también se encuentra en **resources\views\layouts\app.
 
 Las líneas usadas respectivamente son:
 
-- @yield('content') --> en **resources\views\home.blade.php** usamos @extends('layouts.app')
+- @yield('content') --> en **resources\views\home.blade.php** usamos @extends('layouts.app') arriba del todo del archivo
 - @livewireScripts
 
 **HEADER**
@@ -81,9 +81,16 @@ En cuanto a las imágenes se refiere, estas se encuentran en la carpeta **public
 
 Por otra parte, para mostrar las imagenes estoy usando la directiva de blade 'asset', que coge las imagenes directamente desde el directorio 'public'.
 
-Además, en todas las imágenes he usado el atributo 'loading="lazy"', que se encarga de cargar las imágenes de forma diferiza, lo que significa que la imagen solo se cargará cuando esté cerca de entrar en el viewport (parte de la pantalla que vemos).
+Además, en todas las imágenes he usado el atributo 'loading="lazy"', que se encarga de cargar las imágenes de forma diferida, lo que significa que la imagen solo se cargará cuando esté cerca de entrar en el viewport (parte de la pantalla que vemos).
 
 Por último, el atributo 'alt' proporciona un texto alternativo para la imagen, y será el texto que se mostrará si la imagen no puede cargarse por alguna razón.
+
+**JAVASCRIPT**
+
+He incluido en el propio **resources\views\home.blade.php** 2 etiquetas `<script>` para los siguientes propósitos:
+
+- El primer script carga los recursos necesarios para que la libería del lider pueda funcionar.
+- En el segundo script hago dos cosas: en primer lugar inicializo el slider y en segundo lugar me encargo de gestionar el click y el scroll en relación al botón del menú en diseños más pequeños (móviles y tablets).
 
 #### Explicación CSS
 
@@ -103,7 +110,7 @@ Explicación en cuestión:
 
     - **Flexbox**: utilizado para alinear de manera simple elementos como el 'navbar', el número de las cards, el fondo azul con la imagen, le formulario y las propias cards con los logos de los clientes. En este último caso el proceso ha sido un poco más complejo ya que he tenido que calcular el espacio que debe ocupar cada card para ajustarme al diseño pedido. Por ejemplo, en las cards más largas, su ancho ha sido del 200%, ya que debe ocupar el mismo tamaño que 2 más pequeñas, y el cáclulo lo he hecho con 'calc()'.
 
-    - **Grid**: empleado para mostrar 1 o 2 cards por línea según el tamaño del dispositivo que se esté usando (también se podría haber hecho fácilmente con flexbox, pero he querido combinar ambos métodos) y para el footer. En el caso del footer, he optado por Grid ya que permite trabajar simultáneamente sobre dos ejes.
+    - **Grid**: empleado para mostrar 1 o 2 cards por línea según el tamaño del dispositivo que se esté usando (también se podría haber hecho fácilmente con flexbox, pero he querido combinar ambos métodos) y para el footer. En el caso del footer, he optado por Grid ya que permite trabajar simultáneamente sobre dos ejes, y he creído que era más conveniente.
 
     - **Swiper**: he decidido utilizar esta librería ligera de JavaScript para crear el slider del header con 4 imágenes.
 
@@ -121,7 +128,13 @@ El archivo de rutas en cuestión es: **routes\web.php**.
 
 En primer lugar, en este archivo estamos definiendo la ruta '/', que será la página principal de nuestra web, y que mostrará el archivo **resources\views\home.blade.php**.
 
-Por otra parte, también estamos sobreescribiendo una ruta de Laravel Backpack para que cuando el usuario haga login, en vez de llamar al controlador **vendor\backpack\crud\src\app\Http\Controllers\Auth\LoginController.php** llamemos a nuestro propio controlador, en la ruta **app\Http\Controllers\Auth\LoginController.php**. Esto lo hacemos con el objetivo de que cuando el usuario haga login, no sea redirigido a '/dashboard', sino a '/contacto'.
+Por otra parte, también estamos sobreescribiendo dos rutas de Laravel Backpack para que cuando el usuario haga se registre o loguee: 
+
+- En vez de llamar al controlador **vendor\backpack\crud\src\app\Http\Controllers\Auth\LoginController.php** llamemos a nuestro propio controlador, en la ruta **app\Http\Controllers\Auth\LoginController.php**. 
+
+- En vez de llamar al controlador **vendor\backpack\crud\src\app\Http\Controllers\Auth\RegisterController.php** llamemos a nuestro controlador, en la ruta **app\Http\Controllers\Auth\RegisterController.php**.
+
+Esto lo hacemos con el objetivo de que cuando el usuario haga login o se registre, no sea redirigido a '/admin/dashboard', sino a '/admin/contacto'.
 
 **BASE DE DATOS**
 
@@ -153,9 +166,9 @@ Previamente ya he explicado cómo hemos creado el componente de Livewire y el us
 
 1. En **app\Livewire\ContactForm.php** definimos los campos del formulario (estos valores los vinculamos en la vista con la propiedad "wire:model='campo'") y las validaciones para cada campo, mediante la función 'rules()'. En caso de que alguna validación falle, usamos la función 'messages()' para especificar los mensajes que verán los usuarios.
 
-2. En **app\Livewire\ContactForm.php** definimos también una función 'submit()', a la que llamaremos desde la vista cuando presionemos 'enviar mensaje'. En esta función llamaremos a 'validate()', que cogerá las reglas definidas previamente y comprobará si los valores que acaba de recibir se adecúan a esas reglas.
+2. En **app\Livewire\ContactForm.php** definimos también una función 'submit()', a la que llamaremos desde la vista cuando presionemos 'enviar mensaje' (wire:submit="submit"). En esta función llamaremos a 'validate()', que cogerá las reglas definidas previamente y comprobará si los valores que acaba de recibir se adecúan a esas reglas.
 
-3. Si los valores son correctos, llamamos a la functión 'store' de nuestro 'ContactoService' (**app\Services\ContactoService.php**), que se encargará de almacenar la información en la base de datos. Uso el patrón de diseño 'service' junto a un DTO (**app\DTOs\ContactoDto.php**) para poder trabajar con la información cómodamente.
+3. Si los valores son correctos, llamamos a la functión 'store' de nuestro 'ContactoService' (**app\Services\ContactoService.php**), que se encargará de almacenar la información en la base de datos. Uso el patrón de diseño 'service' junto a un DTO (**app\DTOs\ContactoDto.php**) para poder trabajar con los modelos cómodamente.
 
 **LARAVEL BACKPACK**
 
@@ -163,8 +176,8 @@ Una vez instalado laravel backpack desde su documentación oficial, podremos cre
 
 Creados ya los CRUDS con Laravel Backpack, se crearán automáticamente las vitas y componentes necesarios. 
 
-Para poder entrar al panel de aministración iremos a la ruta: 'http://127.0.0.1:8000/admin/login' (en localhost).
+Para poder entrar al panel de aministración iremos a la ruta: 'http://127.0.0.1:8000/admin/register' (en localhost).
 
 En mi caso he creado un 'CRUD' para los contactos, en el que solo permito eliminar el contacto, ya que no tendría sentido modificarlo, y otro para los usuarios, en el que se pueden crer, editar, ver y eliminar los usuarios.
 
-Por último, es importante tener en cuenta que si el proyecto está en local, estará habilitada por defecto la opción de registrar nuevos usuarios, mientras que si la aplicación está en producción podríamos por ejemplo crear un seeder para añadir un usuario y luego eliminar ese seeder.
+Por último, es importante tener en cuenta que si el proyecto está en local, estará habilitada por defecto la opción de registrar nuevos usuarios, mientras que si la aplicación está en producción esta opción estará deshabilitada, por lo que por ejemplo podríamos crear un seeder para añadir un usuario y luego eliminar ese seeder.
