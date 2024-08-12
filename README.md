@@ -1,6 +1,6 @@
 ## Prueba Iker Lorente Impacta
 
-**Versiones utilizadas**
+**Versiones utilizadas (php, composer) y extensiones de PHP**
 
 ![version de php, composer y extensiones usadas](https://res.cloudinary.com/df0pqqjoh/image/upload/v1723492475/proyectos-online/gkdx7ipwvkgslj6hs5vr.png)
 
@@ -26,7 +26,7 @@
 
 `php artisan serve --port=puerto` en paralelo
 
-`npm run dev` el paralelo
+`npm run dev` en paralelo
 
 **Este proyecto ha sido desarrollado utilizando las siguientes tecnologías:**
 
