@@ -14,15 +14,15 @@
 
 En primer lugar, lo primero que hice al recibir los recursos para la web es optimizar las imagenes, ya que pesaban demasiado. He usado https://tinify.com/ para este propósito.
 
-La maquetación HTML del sitio web se encuentra en la ruta **resources\views\home.blade.php**, aunque el '<head>' se encuentra en el archivo **resources\views\layouts\app.blade.php**
+La maquetación HTML del sitio web se encuentra en la ruta **resources\views\home.blade.php**, aunque el `<head>` se encuentra en el archivo **resources\views\layouts\app.blade.php**
 
 Tanto **resources\views\home.blade.php** como **resources\views\layouts\app.blade.php** están "unidos" gracias a las directivas de blade @extends y @yield respectivamente.
 
-#### Explicación HTML ####
+#### Explicación HTML
 
 **HEAD**
 
-Como ya he dicho, el '<head>' se encuentra en **resources\views\layouts\app.blade.php**, y contiene los siguientes elementos:
+Como ya he dicho, el `<head>` se encuentra en **resources\views\layouts\app.blade.php**, y contiene los siguientes elementos:
 
 - Librería de sliders (swiper)
 - Archivo CSS compilado con Vite (el archivo CSS se encuentra en **resources\css\app.css**). Para compilarlo necesitaremos correr el comando 'npm install' y posteriormente 'npm run dev'. En caso de que estemos en producción el comando será 'npm run build'.
@@ -36,7 +36,7 @@ Las líneas utilizadas para incluir estos elementos son:
 
 **BODY**
 
-En este caso el '<body>' también se encuentra en **resources\views\layouts\app.blade.php**, y está compuesto por los siguientes elementos:
+En este caso el `<body>` también se encuentra en **resources\views\layouts\app.blade.php**, y está compuesto por los siguientes elementos:
 
 - El contenido del archivo **resources\views\home.blade.php**
 - Scrips de livewire
@@ -48,15 +48,15 @@ Las líneas usadas respectivamente son:
 
 **HEADER**
 
-El '<header>' se encuentra en **resources\views\home.blade.php** y lo usamos para englobar tanto el baner de la parte superior, como el navbar y el slider.
+El `<header>` se encuentra en **resources\views\home.blade.php** y lo usamos para englobar tanto el baner de la parte superior, como el navbar y el slider.
 
 **SECTION**
 
-Las diferentes secciones ('<section>') de la maquetación web también se encuentran en **resources\views\home.blade.php**, y las uso para englobar las "cards" enumeradas, la seccion de "vendemos humo con mucha pasión" y la sección de los logos de los clientes.
+Las diferentes secciones (`<section>`) de la maquetación web también se encuentran en **resources\views\home.blade.php**, y las uso para englobar las "cards" enumeradas, la seccion de "vendemos humo con mucha pasión" y la sección de los logos de los clientes.
 
 **FOOTER**
 
-El '<footer>' nuevamente se encuentra en **resources\views\home.blade.php**, y lo uso para englobar los liks y logo al final de la página.
+El `<footer>` nuevamente se encuentra en **resources\views\home.blade.php**, y lo uso para englobar los liks y logo al final de la página.
 
 **FORMULARIO**
 
@@ -85,7 +85,7 @@ Además, en todas las imágenes he usado el atributo 'loading="lazy"', que se en
 
 Por último, el atributo 'alt' proporciona un texto alternativo para la imagen, y será el texto que se mostrará si la imagen no puede cargarse por alguna razón.
 
-#### Explicación CSS ####
+#### Explicación CSS
 
 Como he mencionado, el archivo CSS para estilar el HTML, se encuentra en **resources\css\app.css**.
 
@@ -111,7 +111,7 @@ Explicación en cuestión:
 
 ### Fase 2 - Implementación Backend
 
-#### Explicación Laravel ####
+#### Explicación Laravel
 
 En este caso estoy usando Laravel para gestionar las rutas de la aplicación y las diferentes vistas.
 
@@ -168,16 +168,3 @@ Para poder entrar al panel de aministración iremos a la ruta: 'http://127.0.0.1
 En mi caso he creado un 'CRUD' para los contactos, en el que solo permito eliminar el contacto, ya que no tendría sentido modificarlo, y otro para los usuarios, en el que se pueden crer, editar, ver y eliminar los usuarios.
 
 Por último, es importante tener en cuenta que si el proyecto está en local, estará habilitada por defecto la opción de registrar nuevos usuarios, mientras que si la aplicación está en producción podríamos por ejemplo crear un seeder para añadir un usuario y luego eliminar ese seeder.
-
-
-
-
-
-
-
-
-
-
-
-#   p r u e b a - i m p a c t a  
- 
